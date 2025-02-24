@@ -4,4 +4,5 @@ export const Configs = {
   defaultImage: {
     product: require("@/assets/images/empty-product.png"),
   },
+  discountRate: 0.05,
 };

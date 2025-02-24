@@ -11,6 +11,7 @@ export type ThemedButtonProps = PropsWithChildren<TouchableOpacityProps> & {
   darkColor?: string;
   type?: "default" | "icon";
   variant?: "primary" | "secondary";
+  size?: "default" | "large";
 };
 
 export function ThemedButton({
@@ -20,6 +21,7 @@ export function ThemedButton({
   type = "default",
   variant = "primary",
   children,
+  size = "default",
   ...rest
 }: ThemedButtonProps) {
   const backgroundColor = useThemeColor(
@@ -34,6 +36,7 @@ export function ThemedButton({
         { backgroundColor },
         type === "default" ? styles.default : undefined,
         type === "icon" ? styles.icon : undefined,
+        size === "large" ? styles.large : undefined,
         style,
       ]}
       {...rest}
@@ -66,5 +69,11 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
+  },
+  large: {
+    height: 43,
+    borderRadius: 100,
+    paddingHorizontal: 24,
+    paddingVertical: 10,
   },
 });

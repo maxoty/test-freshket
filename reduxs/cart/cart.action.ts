@@ -1,29 +1,17 @@
-import { getProductsApi, getRecommendedProductsApi } from "@/services";
-import { IGetProductsRequest } from "@/services/product/product.type";
+import { checkoutApi } from "@/services";
+import { ICheckoutRequest } from "@/services/cart/cart.type";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const prefixAction = "product";
+const prefixAction = "cart";
 
-export const getRecommendedProductsAction = createAsyncThunk(
-  `${prefixAction}/getRecommendedProducts`,
-  async (_, { rejectWithValue }) => {
+export const checkoutAction = createAsyncThunk(
+  `${prefixAction}/checkout`,
+  async (payload: ICheckoutRequest, { rejectWithValue }) => {
     try {
-      const response = await getRecommendedProductsApi();
+      const response = await checkoutApi(payload);
       return response.data;
     } catch (error: any) {
       return rejectWithValue("Something went wrong");
-    }
-  }
-);
-
-export const getProductsAction = createAsyncThunk(
-  `${prefixAction}/getProducts`,
-  async (payload: IGetProductsRequest, { rejectWithValue }) => {
-    try {
-      const response = await getProductsApi(payload);
-      return response.data;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
     }
   }
 );

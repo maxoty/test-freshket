@@ -1,4 +1,6 @@
+import { IProduct } from "../product";
+
 export type ICartItem = {
-  productId: number;
+  product: IProduct;
   quantity: number;
 };

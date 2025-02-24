@@ -32,9 +32,11 @@ const ProductsScreen = () => {
   const { cart } = useSelector((state: RootState) => state.cart);
 
   const fetchData = useCallback(() => {
-    dispatch(getRecommendedProductsAction()).then(() => {
-      dispatch(getProductsAction(initialPayload));
-    });
+    dispatch(getRecommendedProductsAction())
+      .unwrap()
+      .then(() => {
+        dispatch(getProductsAction(initialPayload));
+      });
   }, [dispatch]);
 
   const refresh = useCallback(() => {
@@ -58,12 +60,12 @@ const ProductsScreen = () => {
 
   const renderItem = ({ item }: { item: IProduct }) => {
     const getProductQuantity = (productId: number) => {
-      const productInCart = cart.find((item) => item.productId === productId);
+      const productInCart = cart.find((item) => item.product.id === productId);
       return productInCart ? productInCart.quantity : 0;
     };
 
     const handleAddToCart = (product: IProduct) => {
-      dispatch(addToCart({ quantity: 1, productId: product.id }));
+      dispatch(addToCart({ quantity: 1, product }));
     };
 
     const handleUpdateQuantity = (productId: number, quantity: number) => {

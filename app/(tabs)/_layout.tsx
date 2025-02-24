@@ -50,6 +50,9 @@ export default function TabLayout() {
               color={color}
             />
           ),
+          tabBarStyle: {
+            display: "none",
+          },
         }}
       />
     </Tabs>

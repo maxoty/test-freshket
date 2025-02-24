@@ -7,14 +7,15 @@ import { IProduct } from "@/types/product";
 import { Configs } from "@/configs";
 import { ThemedButton } from "../ui/ThemedButton";
 import { InputQuantity } from "../ui/InputQuantity";
+import { currencyFormat } from "@/utils";
 
 type Props = {
   product: IProduct;
   isEnabledQuantity: boolean;
   quantity: number;
   onChangeQuantity: (value: number) => void;
-  isEnabledAddToCart: boolean;
-  onClickAddToCart: () => void;
+  isEnabledAddToCart?: boolean;
+  onClickAddToCart?: () => void;
 };
 
 export function ItemProductCard({
@@ -65,7 +66,7 @@ export function ItemProductCard({
           </ThemedText>
           <View style={styles.priceContainer}>
             <ThemedText type="title" variant="primarySoft">
-              {product.price}
+              {currencyFormat(product.price)}
             </ThemedText>
             <ThemedText type="smallMedium" variant="secondary">
               {" "}

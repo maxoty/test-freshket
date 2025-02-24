@@ -13,8 +13,9 @@ export type ThemedTextProps = TextProps & {
     | "defaultMedium"
     | "subtitle"
     | "link"
-    | "button";
-  variant?: "default" | "primary" | "primarySoft" | "secondary";
+    | "button"
+    | "headline";
+  variant?: "default" | "primary" | "primarySoft" | "secondary" | "error";
 };
 
 export function ThemedText({
@@ -33,6 +34,8 @@ export function ThemedText({
         return "textPrimarySoft";
       case "secondary":
         return "textSecondary";
+      case "error":
+        return "error";
       default:
         return "text";
     }
@@ -55,6 +58,7 @@ export function ThemedText({
         type === "subtitle" ? styles.subtitle : undefined,
         type === "link" ? styles.link : undefined,
         type === "button" ? styles.button : undefined,
+        type === "headline" ? styles.headline : undefined,
         style,
       ]}
       {...rest}
@@ -115,5 +119,11 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: "500",
     letterSpacing: 0.1,
+  },
+  headline: {
+    fontFamily: "Roboto",
+    fontSize: 32,
+    lineHeight: 40,
+    fontWeight: "400",
   },
 });

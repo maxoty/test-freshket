@@ -10,7 +10,7 @@ export const getRecommendedProductsAction = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getRecommendedProductsApi();
-      return response.data.map((item: IProduct) => ({
+      return response.data.map((item: IProduct, index) => ({
         ...item,
         id: `recommended-${item.id}`,
       }));
