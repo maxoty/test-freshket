@@ -119,9 +119,7 @@ const CartScreen = () => {
         setCheckoutSuccess(true);
       })
       .catch((error) => {
-        setTimeout(() => {
-          setCheckoutError(error);
-        }, 400);
+        setCheckoutError(error);
       })
       .finally(() => {
         setSubmitting(false);
